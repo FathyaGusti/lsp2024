@@ -1,0 +1,20 @@
+Jadi Gini caranya pake triger
+
+1. buka nama database di mysql
+2. pencet sql di atas
+3. ketik command ini
+
+Trigger Penjualan 
+
+CREATE TRIGGER `Penjualan` AFTER INSERT ON `detail_penjualan`
+ FOR EACH ROW UPDATE obat
+    SET stok = stok - NEW.jumlah_jual
+   WHERE id = NEW.id_obat
+
+
+Trigger Pembelian
+
+CREATE TRIGGER `pembelian` AFTER INSERT ON `detail_pembelian`
+ FOR EACH ROW UPDATE obat
+    SET stok = stok - NEW.jumlah_beli
+    WHERE id = NEW.id_obat
